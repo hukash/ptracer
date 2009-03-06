@@ -1,0 +1,4 @@
+.DS_Store
+*.pyc
+dev.db
+*.ppr #PS-Pad Project-File

@@ -1,0 +1,32 @@
+== TODO ==
+
+
+- create automatically the tracecard token based on pattern:
+  date-client-user-1xxxxx
+
+- create automatically the task token based on pattern:
+  tracecard_token-xxx
+
+- capitalize inputs of creator, client, contact_name, topic, domain
+
+- deadline actual date + 14 days
+
+- offer_type: fix or after_expenses @done
+
+- create workflow based on the following status representations:
+  STATUS_CHOICES = (
+  	("10", "in_process"),
+  	("11", "release"),
+  	("12", "signed_by_ceo"),
+  	("13", "signed_by_cto"),
+  	("14", "signed_by_hoc"),
+  	("15", "offer_true"),
+  	("16", "order_true"),
+  	("20", "completed"),
+  	("21", "postponed"),
+  	("22", "incomplete"),
+  	("23", "faulty"),
+  	("24", "needs_review")
+  	("25", "rejected"),
+  	("26", "overdue")
+)

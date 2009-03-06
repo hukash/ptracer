@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Overview - {{ block.super }}{% endblock %}
+
+{% block main_content %}
+  {% if all_tracecards %}
+    <ul>
+      {% for tracecard in all_tracecards %}
+		<hr />
+		<li>Tracecard ID: {{ tracecard.token }}</li>
+		<li>Kunde: {{ tracecard.client }}</li>
+		<li>Bereich: {{ tracecard.domain }}</li>
+		<li>Thema: {{ tracecard.topic }}</li>
+		<li>Termin: {{ tracecard.deadline }}</li>
+		<li>Beschreibung/Notizen: {{ tracecard.description }} </li>
+        <li> erstellt am {{ tracecard.created_at}} von {{ tracecard.creator }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No Tracecards are available.</p>
+  {% endif %}
+{% endblock %}
