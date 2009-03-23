@@ -23,6 +23,11 @@ class OpenIssue(models.Model):
 		(90,  "90%"),
 		(100,"100%"),
 	)
+	APPROVAL_CHOICES = (
+		(0, "secret"),
+		(1, "intern"),
+		(2, "extern"),
+	)
 	subproject = models.ForeignKey(SubProject)
 	creator = models.ForeignKey(User)
 	module = models.CharField(max_length=50)
@@ -36,6 +41,7 @@ class OpenIssue(models.Model):
 	status = models.PositiveIntegerField(default=0, choices=STATUS_CHOICES)
 	troubleshooting = models.TextField(blank=True)
 	comment = models.TextField(blank=True)
+	approval = models.PositiveIntegerField(default=0, choices=APPROVAL_CHOICES)
 	
 	def __unicode__(self):
 		return self.description
