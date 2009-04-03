@@ -2,17 +2,17 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class MainProject(models.Model):
-    creator = models.ForeignKey(User)
-    name = models.Charfield(max_length=255)
-    client = models.Charfield(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
+	creator = models.ForeignKey(User)
+	name = models.CharField(max_length=255)
+	client = models.CharField(max_length=100)
+	created_at = models.DateTimeField(auto_now_add=True)
+	last_modified = models.DateTimeField(auto_now=True)
+	
 	def __unicode__(self):
-	    return self.label	
-
+		return self.name
+	
 class SubProject(models.Model):
-    main_project = models.ForeignKey(MainProject)
+	main_project = models.ForeignKey(MainProject)
 	creator = models.ForeignKey(User)
 	label = models.CharField(max_length=255)
 	created_at = models.DateTimeField(auto_now_add=True)
@@ -34,13 +34,13 @@ class OpenIssue(models.Model):
 		(90,  "90%"),
 		(100,"100%"),
 	)
-    PRIORITY_CHOICES = (
-        (1, "critical"),
-        (2, "high"),
-        (3, "medium"),
-        (4, "low"),
-        (5, "remind"),
-    )
+	PRIORITY_CHOICES = (
+		(1, "critical"),
+		(2, "high"),
+		(3, "medium"),
+		(4, "low"),
+		(5, "remind"),
+	)
 	APPROVAL_CHOICES = (
 		(0, "secret"),
 		(1, "intern"),
@@ -53,7 +53,7 @@ class OpenIssue(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	scheduled_for = models.DateField(blank=True)
 	priority = models.PositiveIntegerField(default=5, choices=PRIORITY_CHOICES)
-    description = models.TextField()
+	description = models.TextField()
 	responsible_staff_member = models.CharField(max_length=255, blank=True)
 	responsible_project_member = models.CharField(max_length=255)
 	assistance = models.CharField(max_length=255)
