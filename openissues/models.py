@@ -5,6 +5,8 @@ class MainProject(models.Model):
     creator = models.ForeignKey(User)
     name = models.Charfield(max_length=255)
     client = models.Charfield(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):
 	    return self.label	
