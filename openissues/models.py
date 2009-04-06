@@ -24,7 +24,7 @@ class SubProject(models.Model):
 	
 class OpenIssue(models.Model):
 	STATUS_CHOICES = (
-		(0,    "0%"),
+		(0,   "0%"),
 		(10,  "10%"),
 		(25,  "25%"),
 		(40,  "40%"),
@@ -32,7 +32,7 @@ class OpenIssue(models.Model):
 		(60,  "60%"),
 		(75,  "75%"),
 		(90,  "90%"),
-		(100,"100%"),
+		(100, "100%"),
 	)
 	PRIORITY_CHOICES = (
 		(1, "critical"),
@@ -46,10 +46,18 @@ class OpenIssue(models.Model):
 		(1, "intern"),
 		(2, "extern"),
 	)
+	CONDITION_CHOICES = (
+		(0, "deleted"),
+		(1, "active"),
+		(2, "postponed"),
+		(3, "invalid"),
+	)
 	subproject = models.ForeignKey(SubProject)
 	creator = models.ForeignKey(User)
 	module = models.CharField(max_length=50)
 	topic = models.CharField(max_length=50)
+	predecessor = models.PositiveIntegerField(blank=True)
+	successor = models.PositiveIntegerField(blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	scheduled_for = models.DateField(blank=True)
 	priority = models.PositiveIntegerField(default=5, choices=PRIORITY_CHOICES)
@@ -61,6 +69,7 @@ class OpenIssue(models.Model):
 	troubleshooting = models.TextField(blank=True)
 	comment = models.TextField(blank=True)
 	approval = models.PositiveIntegerField(default=0, choices=APPROVAL_CHOICES)
+	condition = models.PositiveIntegerField(default=1, choices=CONDITION_CHOICES)
 	
 	def __unicode__(self):
 		return self.description
